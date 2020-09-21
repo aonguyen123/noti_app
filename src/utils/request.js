@@ -3,7 +3,7 @@ import axios from "axios";
 export function request(method, endPoint, data, params) {
   return axios({
     method,
-    url: `https://app-nest-api.herokuapp.com${endPoint}`,
+    url: `http://localhost:7000${endPoint}`,
     data,
     params,
   });
