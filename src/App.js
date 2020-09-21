@@ -12,6 +12,8 @@ import {
 import "antd/dist/antd.css";
 import { request } from "./utils/request";
 import { requestFirebaseNotification, onMessageListener } from "./firebaseInit";
+import dynamic from 'dva/dynamic';
+import app from './dva'
 
 function App() {
   const [noti, setNoti] = useState([]);
@@ -96,4 +98,13 @@ function App() {
   );
 }
 
+
+
+// const AppComponent = dynamic({
+//   app,
+//   models: () => [
+//     import('./models/test'),
+//   ],
+//   component: () => <App />,
+// });
 export default App;
