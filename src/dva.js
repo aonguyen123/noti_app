@@ -10,7 +10,6 @@ import RouterConfig from "./routes";
 
 requestFirebaseNotification()
   .then((firebaseToken) => {
-    // console.log(firebaseToken);
     // send token to server
     // setToken(firebaseToken);
   })
