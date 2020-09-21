@@ -1,12 +1,9 @@
-import React from "react";
 import dva from "dva";
 import { message } from "antd";
-import { Router, Route } from "dva/router";
 import createLoading from "dva-loading";
 import { createBrowserHistory } from "history";
 import "antd/dist/antd.css";
 
-import Home from "./pages/home/index";
 import appModel from "./models/app";
 import { requestFirebaseNotification, onMessageListener } from "./firebaseInit";
 import RouterConfig from "./routes";
@@ -38,6 +35,6 @@ const app = dva({
 app.model(appModel);
 app.use(createLoading());
 
-app.router(({ history, app }) => RouterConfig({ history }));
+app.router(({ history, app }) => RouterConfig({ history, app }));
 
 export default app;
