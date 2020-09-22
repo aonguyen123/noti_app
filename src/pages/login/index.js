@@ -9,23 +9,29 @@ export default function Login() {
     <Row style={{ height: "100vh" }} justify="center" align="center">
       <Col>
         <Card free style={{ width: 500, margin: "auto" }}>
-          <Card.Header title="Simple Card" />
+          <Card.Header title="Sign In" />
           <Card.Content>
-            <Form
-              loading={true}
-              style={{ width: 400 }}
-              labelTextAlign="left"
-              size="medium"
-              labelAlign="inset"
-            >
-              <FormItem label="username" required asterisk={false}>
+            <Form labelTextAlign="left" size="medium" labelAlign="inset">
+              <FormItem
+                label="username"
+                required
+                asterisk={false}
+                hasFeedback
+                requiredMessage="Please input your username"
+              >
                 <Input name="username" trim />
               </FormItem>
-              <FormItem label="password" required asterisk={false}>
+              <FormItem
+                label="password"
+                required
+                asterisk={false}
+                hasFeedback
+                requiredMessage="Please input your password"
+              >
                 <Input name="password" trim />
               </FormItem>
 
-              <FormItem label=" ">
+              <FormItem>
                 <Form.Submit
                   style={{ width: "100%" }}
                   type="primary"
