@@ -22,7 +22,7 @@ const app = {
   subscriptions: {
     setup({ history, dispatch }) {
       return history.listen(({ pathname }) => {
-        if (pathname === "/") {
+        if (pathname === "/te") {
           dispatch({ type: "fetchNotify" });
         }
       });

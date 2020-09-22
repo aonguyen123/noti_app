@@ -2,11 +2,12 @@ import dva from "dva";
 import { message } from "antd";
 import createLoading from "dva-loading";
 import { createBrowserHistory } from "history";
-import "antd/dist/antd.css";
+// import "antd/dist/antd.css";
+import "@alifd/next/dist/next.css";
 
 import appModel from "./models/app";
 import { requestFirebaseNotification, onMessageListener } from "./firebaseInit";
-import RouterConfig from "./routes";
+import RouterConfig from "./routesConfig";
 
 requestFirebaseNotification()
   .then((firebaseToken) => {
@@ -34,6 +35,6 @@ const app = dva({
 app.model(appModel);
 app.use(createLoading());
 
-app.router(({ history, app }) => RouterConfig({ history, app }));
+app.router(RouterConfig);
 
 export default app;

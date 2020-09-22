@@ -2,6 +2,34 @@
 # yarn lockfile v1
 
 
+"@alifd/field@~1.4.1":
+  version "1.4.5"
+  resolved "https://registry.yarnpkg.com/@alifd/field/-/field-1.4.5.tgz#1e1e5e83c143637d6efe92eb91dcde9e08a73a9f"
+  integrity sha512-DcqhHJJ+gtFp7Ru9PnFlxorRPR6hYrYvLb92xfM0iLXWGbQP+yvP3Mn/mfoKyDpDE/A+aHCOi26zyYt4nbyScg==
+  dependencies:
+    "@alifd/validate" "^1.2.0"
+    prop-types "^15.5.8"
+
+"@alifd/next@^1.20.28":
+  version "1.20.28"
+  resolved "https://registry.yarnpkg.com/@alifd/next/-/next-1.20.28.tgz#99467d74ac481705b3e662411902387f374d87a5"
+  integrity sha512-gEAHuMoC2xRjjv0o1eXN2M4rv9tRdiR3LV0PZ1Wvig68ESogm+NqIDieOLdI7cl0E/jdm8zcfuIqfwHvUElZUQ==
+  dependencies:
+    "@alifd/field" "~1.4.1"
+    "@alifd/validate" "~1.2.0"
+    babel-runtime "^6.26.0"
+    classnames "^2.2.3"
+    hoist-non-react-statics "^2.1.0"
+    prop-types "^15.6.0"
+    react-lifecycles-compat "^3.0.4"
+    react-transition-group "^2.2.1"
+    shallow-element-equals "^1.0.1"
+
+"@alifd/validate@^1.2.0", "@alifd/validate@~1.2.0":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@alifd/validate/-/validate-1.2.0.tgz#252e0add24e64efd54fe611ba8c66d0147d850f6"
+  integrity sha512-ZXzC9/2HnRAteeB6c0P9/DL8/lS69hhUiAAxS6GpFWKaQurtDUDiCQYNUWGv7zxaPGBaMxgPcfBBcFpgpaHF5w==
+
 "@ant-design/colors@^3.1.0":
   version "3.2.2"
   resolved "https://registry.yarnpkg.com/@ant-design/colors/-/colors-3.2.2.tgz#5ad43d619e911f3488ebac303d606e66a8423903"
@@ -4435,6 +4463,13 @@ dom-converter@^0.2:
   dependencies:
     utila "~0.4"
 
+dom-helpers@^3.4.0:
+  version "3.4.0"
+  resolved "https://registry.yarnpkg.com/dom-helpers/-/dom-helpers-3.4.0.tgz#e9b369700f959f62ecde5a6babde4bccd9169af8"
+  integrity sha512-LnuPJ+dwqKDIyotW1VzmOZ5TONUN7CwkCR5hrgawTUbkBGYdeoNLZo6nNfGkCrjtE1nXXaj7iMMpDa8/d9WoIA==
+  dependencies:
+    "@babel/runtime" "^7.1.2"
+
 dom-serializer@0:
   version "0.2.2"
   resolved "https://registry.yarnpkg.com/dom-serializer/-/dom-serializer-0.2.2.tgz#1afb81f533717175d478655debc5e332d9f9bb51"
@@ -5905,7 +5940,7 @@ hmac-drbg@^1.0.0:
     minimalistic-assert "^1.0.0"
     minimalistic-crypto-utils "^1.0.1"
 
-hoist-non-react-statics@^2.5.0:
+hoist-non-react-statics@^2.1.0, hoist-non-react-statics@^2.5.0:
   version "2.5.5"
   resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-2.5.5.tgz#c5903cf409c0dfd908f388e619d86b9c1174cb47"
   integrity sha512-rqcy4pJo55FTTLWt+bU8ukscqHeE/e9KWvsOW2b/a3afxQZhwkQdT1rPPCJ0rYXdj4vNcasY8zHTH+jF/qStxw==
@@ -9474,7 +9509,7 @@ prompts@^2.0.1:
     kleur "^3.0.3"
     sisteransi "^1.0.4"
 
-prop-types@^15.6.0, prop-types@^15.6.1, prop-types@^15.6.2, prop-types@^15.7.2:
+prop-types@^15.5.8, prop-types@^15.6.0, prop-types@^15.6.1, prop-types@^15.6.2, prop-types@^15.7.2:
   version "15.7.2"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.7.2.tgz#52c41e75b8c87e72b9d9360e0206b99dcbffa6c5"
   integrity sha512-8QQikdH7//R2vurIJSutZ1smHYTcLpRWEOlHnzcWHmBYrOGUysKwSsrC89BCiFj3CbrfJ/nXFdJepOVrY1GCHQ==
@@ -10081,6 +10116,11 @@ react-is@^16.12.0, react-is@^16.6.0, react-is@^16.7.0, react-is@^16.8.1, react-i
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
   integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
 
+react-lifecycles-compat@^3.0.4:
+  version "3.0.4"
+  resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
+  integrity sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==
+
 react-redux@5.0.7:
   version "5.0.7"
   resolved "https://registry.yarnpkg.com/react-redux/-/react-redux-5.0.7.tgz#0dc1076d9afb4670f993ffaef44b8f8c1155a4c8"
@@ -10215,6 +10255,16 @@ react-scripts@3.4.3:
     workbox-webpack-plugin "4.3.1"
   optionalDependencies:
     fsevents "2.1.2"
+
+react-transition-group@^2.2.1:
+  version "2.9.0"
+  resolved "https://registry.yarnpkg.com/react-transition-group/-/react-transition-group-2.9.0.tgz#df9cdb025796211151a436c69a8f3b97b5b07c8d"
+  integrity sha512-+HzNTCHpeQyl4MJ/bdE0u6XRMe9+XG/+aL4mCxVN4DnPBQ0/5bfHWPDuOZUzYdMj94daZaZdCCc1Dzt9R/xSSg==
+  dependencies:
+    dom-helpers "^3.4.0"
+    loose-envify "^1.4.0"
+    prop-types "^15.6.2"
+    react-lifecycles-compat "^3.0.4"
 
 react@^16.13.1:
   version "16.13.1"
@@ -10957,6 +11007,13 @@ shallow-clone@^3.0.0:
   dependencies:
     kind-of "^6.0.2"
 
+shallow-element-equals@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/shallow-element-equals/-/shallow-element-equals-1.0.1.tgz#50739b7d94ad7567a134173d3f4422387ed57ce6"
+  integrity sha1-UHObfZStdWehNBc9P0QiOH7VfOY=
+  dependencies:
+    style-equal "^1.0.0"
+
 shallowequal@^1.0.2, shallowequal@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/shallowequal/-/shallowequal-1.1.0.tgz#188d521de95b9087404fd4dcb68b13df0ae4e7f8"
@@ -11458,6 +11515,11 @@ strip-json-comments@~2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/strip-json-comments/-/strip-json-comments-2.0.1.tgz#3c531942e908c2697c0ec344858c286c7ca0a60a"
   integrity sha1-PFMZQukIwml8DsNEhYwobHygpgo=
+
+style-equal@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/style-equal/-/style-equal-1.0.0.tgz#98a1c5922226bfe13c196e73f1940e91b8e66595"
+  integrity sha1-mKHFkiImv+E8GW5z8ZQOkbjmZZU=
 
 style-loader@0.23.1:
   version "0.23.1"
