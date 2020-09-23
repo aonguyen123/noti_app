@@ -7,7 +7,7 @@ const { Row, Col } = Grid;
 export default function Login() {
   return (
     <Row style={{ height: "100vh" }} justify="center" align="center">
-      <Col>
+      <Col xl={5} l={5} m={15} xs={24} xxs={24} s={24}>
         <Card free style={{ width: 500, margin: "auto" }}>
           <Card.Header title="Sign In" />
           <Card.Content>
