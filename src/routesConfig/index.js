@@ -1,9 +1,27 @@
 import React from "react";
 import { dynamic, router } from "dva";
 
-const { Router, Switch, Route } = router;
+import RouterConfig from "./routerConfig";
+import Layout from "layouts";
 
-function RouterConfig({ history, app }) {
+const { Router, Switch, Route, useRouteMatch, Redirect } = router;
+
+function Nesting() {
+  let { path } = useRouteMatch();
+  console.log(path);
+  return (
+    <Switch>
+      <Route exact path={path}>
+        <h1>Test</h1>
+      </Route>
+      <Route exact path={`${path}/test`}>
+        <h1>Test1</h1>
+      </Route>
+    </Switch>
+  );
+}
+
+function Config({ history, app }) {
   const HomePage = dynamic({
     app,
     component: () => import("../pages/home"),
@@ -21,10 +39,13 @@ function RouterConfig({ history, app }) {
   return (
     <Router history={history}>
       <Switch>
-        <Route exact path="/" component={HomePage} />
+        <Redirect exact from="/" to="/home" />
+        <Route path="/home">
+          <Nesting />
+        </Route>
         <Route exact path="/login" component={LoginPage} />
       </Switch>
     </Router>
   );
 }
-export default RouterConfig;
+export default Config;

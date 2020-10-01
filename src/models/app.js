@@ -32,11 +32,11 @@ const app = {
       if (locationPathname) redirectUrl.push(locationPathname);
       if (locationQuery) redirectUrl.push(locationQuery);
       if (!_token) {
-        yield put(
-          routerRedux.push(
-            `/signup?redirectUrl=${encodeURIComponent(redirectUrl.join(""))}`
-          )
-        );
+        // yield put(
+        //   routerRedux.push(
+        //     `/signup?redirectUrl=${encodeURIComponent(redirectUrl.join(""))}`
+        //   )
+        // );
       } else {
         yield call(utils.setHeaderRequest, _token);
         yield call(service.getMe);

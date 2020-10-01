@@ -24,7 +24,7 @@ function Home({ notifies, loading }) {
     //   description: response.data.name,
     // });
   }
-
+  console.log("home");
   return (
     <div style={{ padding: "20px" }}>
       <Row gutter={[16, 16]}>
