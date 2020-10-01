@@ -1,14 +1,16 @@
 import React from "react";
-import { Form, Input, Grid, Card, Loading, Button } from "@alifd/next";
+import { Form, Input, Grid, Card } from "@alifd/next";
+import { connect } from "dva";
 
 const FormItem = Form.Item;
 const { Row, Col } = Grid;
 
-function ButtonSignIn() {
-  return <Button>SignIn</Button>;
-}
+function Login({ dispatch }) {
+  function handleSubmit(values, error) {
+    if (error) return;
+    dispatch({ type: "auth/signin", users: values });
+  }
 
-export default function Login() {
   return (
     <Row style={{ height: "100vh" }} justify="center" wrap align="center">
       <Col xl={8} l={8} m={8} s={24} xs={24}>
@@ -38,12 +40,13 @@ export default function Login() {
 
               <FormItem>
                 <Form.Submit
-                  component={ButtonSignIn}
                   style={{ width: "100%" }}
                   type="primary"
                   validate
-                  //   onClick={this.handleSubmit}
-                />
+                  onClick={handleSubmit}
+                >
+                  SignIn
+                </Form.Submit>
               </FormItem>
             </Form>
           </Card.Content>
@@ -52,3 +55,7 @@ export default function Login() {
     </Row>
   );
 }
+
+export default connect(({ loading }) => ({
+  loading,
+}))(Login);

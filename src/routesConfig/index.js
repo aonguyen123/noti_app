@@ -1,7 +1,7 @@
 import React from "react";
-import { Router, Route, Switch } from "dva/router";
+import { dynamic, router } from "dva";
 
-import dynamic from "dva/dynamic";
+const { Router, Switch, Route } = router;
 
 function RouterConfig({ history, app }) {
   const HomePage = dynamic({
@@ -10,9 +10,13 @@ function RouterConfig({ history, app }) {
   });
   const LoginPage = dynamic({
     app,
-    models: () => [import("./../models/auth")],
+    models: () => [import("../pages/login/model")],
     component: () => import("../pages/login"),
   });
+  // const RegisterPage = dynamic({
+  //   app,
+  //   component: () => import('./../pages/')
+  // });
 
   return (
     <Router history={history}>
