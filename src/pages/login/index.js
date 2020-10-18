@@ -1,49 +1,65 @@
 import React from "react";
-import { Form, Input, Grid, Card } from "@alifd/next";
-
-const FormItem = Form.Item;
-const { Row, Col } = Grid;
+import {Form, Input, Row, Col, Button} from "antd";
+import { UserOutlined, LockOutlined } from '@ant-design/icons'
 
 export default function Login() {
-  return (
-    <Row style={{height: '100vh'}} justify='center' wrap align='center'>
-      <Col xl={8} l={8} m={8} s={24} xs={24}>
-        <Card free>
-          <Card.Header title="Sign In" />
-          <Card.Content>
-            <Form labelTextAlign="left" size="medium" labelAlign="inset">
-              <FormItem
-                label="username"
-                required
-                asterisk={false}
-                hasFeedback
-                requiredMessage="Please input your username"
-              >
-                <Input name="username" trim />
-              </FormItem>
-              <FormItem
-                label="password"
-                required
-                asterisk={false}
-                hasFeedback
-                requiredMessage="Please input your password"
-              >
-                <Input name="password" trim />
-              </FormItem>
 
-              <FormItem>
-                <Form.Submit
-                  style={{ width: "100%" }}
-                  type="primary"
-                  validate
-                  //   onClick={this.handleSubmit}
-                >
-                  Submit
-                </Form.Submit>
-              </FormItem>
-            </Form>
-          </Card.Content>
-        </Card>
+  const onFinish = (values) => {
+    console.log(values)
+  }
+
+  return (
+    <Row style={{height: "100vh"}} justify="center" align="middle">
+      <Col xxl={8} xl={8} lg={10} md={10} sm={10} xs={24}>
+        
+        <Form
+          name="normal_login"
+          className="login-form"
+          initialValues={{
+            remember: true,
+          }}
+          onFinish={onFinish}
+        >
+          <Form.Item
+            name="username"
+            rules={[
+              {
+                required: true,
+                message: "Please input your Username!",
+              },
+            ]}
+          >
+            <Input
+              prefix={<UserOutlined className="site-form-item-icon" />}
+              placeholder="Username"
+            />
+          </Form.Item>
+          <Form.Item
+            name="password"
+            rules={[
+              {
+                required: true,
+                message: "Please input your Password!",
+              },
+            ]}
+          >
+            <Input
+              prefix={<LockOutlined className="site-form-item-icon" />}
+              type="password"
+              placeholder="Password"
+            />
+          </Form.Item>
+          <Form.Item>
+            <Button
+              type="primary"
+              htmlType="submit"
+              className="login-form-button"
+            >
+              Log in
+            </Button>
+            Or <a href="">register now!</a>
+          </Form.Item>
+        </Form>
       </Col>
     </Row>
   );

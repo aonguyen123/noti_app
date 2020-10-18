@@ -1,5 +1,6 @@
 import React from "react";
-import { Router, Route, Switch } from "dva/router";
+import { LoadingOutlined } from '@ant-design/icons'
+import { Router, Route, Switch, Redirect } from "dva/router";
 
 import dynamic from "dva/dynamic";
 
@@ -8,17 +9,28 @@ function RouterConfig({ history, app }) {
     app,
     component: () => import("../pages/home"),
   });
-  const LoginPage = dynamic({
+  // const LoginPage = dynamic({
+  //   app,
+  //   models: () => [import("./../models/auth")],
+  //   component: () => import("../pages/login"),
+  // });
+  const GuestLayout = dynamic({
     app,
-    models: () => [import("./../models/auth")],
-    component: () => import("../pages/login"),
+    component: () => import("layouts/guestLayout"),
   });
 
+  dynamic.setDefaultLoadingComponent(() => {
+    return <LoadingOutlined  />;
+  });
+  
   return (
     <Router history={history}>
       <Switch>
-        <Route exact path="/" component={HomePage} />
-        <Route exact path="/login" component={LoginPage} />
+        <Redirect exact from='/' to='/home' />
+        <Route exact path="/home" component={HomePage} />
+        <Route exact path="/login" component={GuestLayout} />
+
+
       </Switch>
     </Router>
   );
