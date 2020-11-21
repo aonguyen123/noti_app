@@ -1,38 +1,56 @@
-import React from "react";
-import { LoadingOutlined } from '@ant-design/icons'
-import { Router, Route, Switch, Redirect } from "dva/router";
+import React, {useEffect} from "react";
+import {LoadingOutlined} from "@ant-design/icons";
+import {router, dynamic} from "dva";
+// import firebase from "firebase";
 
-import dynamic from "dva/dynamic";
+const {BrowserRouter, Route, Switch, Redirect} = router;
 
-function RouterConfig({ history, app }) {
+function RouterConfig({history, app}) {
+
+  // useEffect(() => {
+  //   const unregisterAuthObserver = firebase
+  //     .auth()
+  //     .onAuthStateChanged(async user => {
+  //       if(!user) {
+  //         console.log('user logout')
+  //         return ;
+  //       }
+  //       console.log('login user info', user)
+  //       const _token = await user.getIdToken()
+  //       console.log(_token)
+  //     });
+
+  //     return () => unregisterAuthObserver();
+  // }, []);
+
   const HomePage = dynamic({
     app,
-    component: () => import("../pages/home"),
+    component: () => import("pages/home"),
   });
-  // const LoginPage = dynamic({
-  //   app,
-  //   models: () => [import("./../models/auth")],
-  //   component: () => import("../pages/login"),
-  // });
-  const GuestLayout = dynamic({
+  const NotFound = dynamic({
     app,
-    component: () => import("layouts/guestLayout"),
+    component: () => import("pages/notFound"),
+  });
+  const AuthPage = dynamic({
+    app,
+    component: () => import("pages/login"),
+    models: () => [import("models/auth")],
   });
 
   dynamic.setDefaultLoadingComponent(() => {
-    return <LoadingOutlined  />;
+    return <LoadingOutlined />;
   });
-  
+
   return (
-    <Router history={history}>
+    <BrowserRouter>
       <Switch>
-        <Redirect exact from='/' to='/home' />
-        <Route exact path="/home" component={HomePage} />
-        <Route exact path="/login" component={GuestLayout} />
+        <Redirect exact from="/" to="/home" />
+        <Route path="/home" component={HomePage} />
+        <Route path="/login" component={AuthPage} />
 
-
+        <Route component={NotFound} />
       </Switch>
-    </Router>
+    </BrowserRouter>
   );
 }
 export default RouterConfig;

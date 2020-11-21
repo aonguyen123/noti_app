@@ -2,8 +2,8 @@ import firebase from "firebase/app";
 import "firebase/messaging";
 
 const config = {
-  apiKey: "AIzaSyDjz4aODzHHcVGmkT4scyKuhVxks4nZIP0",
-  authDomain: "socialapp-f7a3f.firebaseapp.com",
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
   databaseURL: "https://socialapp-f7a3f.firebaseio.com",
   projectId: "socialapp-f7a3f",
   storageBucket: "socialapp-f7a3f.appspot.com",
