@@ -2,15 +2,15 @@ import firebase from "firebase/app";
 import "firebase/messaging";
 
 const config = {
-  apiKey: "AIzaSyDjz4aODzHHcVGmkT4scyKuhVxks4nZIP0",
-  authDomain: "socialapp-f7a3f.firebaseapp.com",
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
   databaseURL: "https://socialapp-f7a3f.firebaseio.com",
   projectId: "socialapp-f7a3f",
   storageBucket: "socialapp-f7a3f.appspot.com",
   messagingSenderId: "841465032063",
   appId: "1:841465032063:web:3f2dab606a100be3c3be4a",
 };
-firebase.initializeApp(config);
+const firebaseInit = firebase.initializeApp(config);
 const messaging = firebase.messaging();
 
 export const requestFirebaseNotification = () =>
@@ -32,3 +32,5 @@ export const onMessageListener = () =>
       resolve(payload);
     });
   });
+
+export {firebaseInit};

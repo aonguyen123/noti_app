@@ -1,42 +1,46 @@
-import React from "react";
-import { dynamic, router } from "dva";
+import React, {useEffect} from "react";
+import {LoadingOutlined} from "@ant-design/icons";
+import {router, dynamic} from "dva";
 
-import RouterConfig from "./routerConfig";
-import Layout from "layouts";
+import { firebaseInit } from 'firebaseInit'
+import "firebase/auth";
 
-const { Router, Switch, Route, useRouteMatch, Redirect } = router;
+const {BrowserRouter, Route, Switch, Redirect} = router;
 
-function Nesting() {
-  let { path } = useRouteMatch();
-  console.log(path);
-  return (
-    <Switch>
-      <Route exact path={path}>
-        <h1>Test</h1>
-      </Route>
-      <Route exact path={`${path}/test`}>
-        <h1>Test1</h1>
-      </Route>
-      <Route exact path={`${path}/not-found`}>
-        <h1>not found</h1>
-      </Route>
-      <Route path="/not-found">
-        <h1>Not Found1</h1>
-      </Route>
-      <Redirect to="/not-found" />
-    </Switch>
-  );
-}
+function RouterConfig({history, app}) {
 
-function Config({ history, app }) {
+  useEffect(() => {
+    const unregisterAuthObserver = firebaseInit
+      .auth()
+      .onAuthStateChanged(async user => {
+        if(!user) {
+          console.log('user logout')
+          return ;
+        }
+        console.log('login user info', user)
+        const _token = await user.getIdToken()
+        console.log(_token)
+      });
+
+      return () => unregisterAuthObserver();
+  }, []);
+
   const HomePage = dynamic({
     app,
-    component: () => import("../pages/home"),
+    component: () => import("pages/home"),
   });
-  const LoginPage = dynamic({
+  const NotFound = dynamic({
     app,
-    models: () => [import("../pages/login/model")],
-    component: () => import("../pages/login"),
+    component: () => import("pages/notFound"),
+  });
+  const AuthPage = dynamic({
+    app,
+    component: () => import("pages/login"),
+    // models: () => [import("models/auth")],
+  });
+
+  dynamic.setDefaultLoadingComponent(() => {
+    return <LoadingOutlined />;
   });
   // const RegisterPage = dynamic({
   //   app,
@@ -44,18 +48,15 @@ function Config({ history, app }) {
   // });
 
   return (
-    <Router history={history}>
+    <BrowserRouter>
       <Switch>
         <Redirect exact from="/" to="/home" />
-        <Route path="/home">
-          <Nesting />
-        </Route>
-        <Route exact path="/login" component={LoginPage} />
-        <Route exact path="/not-found">
-          <h1>Not Found</h1>
-        </Route>
+        <Route path="/home" component={HomePage} />
+        <Route path="/login" component={AuthPage} />
+
+        <Route component={NotFound} />
       </Switch>
-    </Router>
+    </BrowserRouter>
   );
 }
-export default Config;
+export default RouterConfig;

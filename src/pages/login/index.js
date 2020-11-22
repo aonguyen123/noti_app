@@ -1,61 +1,32 @@
 import React from "react";
-import { Form, Input, Grid, Card } from "@alifd/next";
-import { connect } from "dva";
+import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
+import {Row, Col} from "antd";
+import "firebase/auth";
+import firebase from "firebase/app";
 
-const FormItem = Form.Item;
-const { Row, Col } = Grid;
+import "./firebaseui-styling.global.css";
+import styles from "./login.module.css";
 
-function Login({ dispatch }) {
-  function handleSubmit(values, error) {
-    if (error) return;
-    dispatch({ type: "auth/signin", users: values });
-  }
+const uiConfig = {
+  signInFlow: "popup",
+  signInSuccessUrl: "/home",
+  signInOptions: [firebase.auth.PhoneAuthProvider.PROVIDER_ID],
+};
+
+export default function Login() {
+  // const [isLogin, setIsLogin] = useState(false);
 
   return (
-    <Row style={{ height: "100vh" }} justify="center" wrap align="center">
-      <Col xl={8} l={8} m={8} s={24} xs={24}>
-        <Card free>
-          <Card.Header title="Sign In" />
-
-          <Card.Content>
-            <Form labelTextAlign="left" size="medium" labelAlign="inset">
-              <FormItem
-                label="username"
-                required
-                asterisk={false}
-                hasFeedback
-                requiredMessage="Please input your username"
-              >
-                <Input name="username" trim />
-              </FormItem>
-              <FormItem
-                label="password"
-                required
-                asterisk={false}
-                hasFeedback
-                requiredMessage="Please input your password"
-              >
-                <Input name="password" htmlType="password" trim />
-              </FormItem>
-
-              <FormItem>
-                <Form.Submit
-                  style={{ width: "100%" }}
-                  type="primary"
-                  validate
-                  onClick={handleSubmit}
-                >
-                  SignIn
-                </Form.Submit>
-              </FormItem>
-            </Form>
-          </Card.Content>
-        </Card>
-      </Col>
-    </Row>
+    <div style={{padding: "20px"}}>
+      <Row justify="center" align="middle" style={{height: "100vh"}}>
+        <Col>
+          <StyledFirebaseAuth
+            className={styles.firebaseUi}
+            uiConfig={uiConfig}
+            firebaseAuth={firebase.auth()}
+          />
+        </Col>
+      </Row>
+    </div>
   );
 }
-
-export default connect(({ loading }) => ({
-  loading,
-}))(Login);
