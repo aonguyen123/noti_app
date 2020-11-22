@@ -36,12 +36,16 @@ function RouterConfig({history, app}) {
   const AuthPage = dynamic({
     app,
     component: () => import("pages/login"),
-    models: () => [import("models/auth")],
+    // models: () => [import("models/auth")],
   });
 
   dynamic.setDefaultLoadingComponent(() => {
     return <LoadingOutlined />;
   });
+  // const RegisterPage = dynamic({
+  //   app,
+  //   component: () => import('./../pages/')
+  // });
 
   return (
     <BrowserRouter>
