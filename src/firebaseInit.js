@@ -10,7 +10,7 @@ const config = {
   messagingSenderId: "841465032063",
   appId: "1:841465032063:web:3f2dab606a100be3c3be4a",
 };
-firebase.initializeApp(config);
+const firebaseInit = firebase.initializeApp(config);
 const messaging = firebase.messaging();
 
 export const requestFirebaseNotification = () =>
@@ -32,3 +32,5 @@ export const onMessageListener = () =>
       resolve(payload);
     });
   });
+
+export {firebaseInit};

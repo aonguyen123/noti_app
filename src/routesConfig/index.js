@@ -1,27 +1,29 @@
 import React, {useEffect} from "react";
 import {LoadingOutlined} from "@ant-design/icons";
 import {router, dynamic} from "dva";
-// import firebase from "firebase";
+
+import { firebaseInit } from 'firebaseInit'
+import "firebase/auth";
 
 const {BrowserRouter, Route, Switch, Redirect} = router;
 
 function RouterConfig({history, app}) {
 
-  // useEffect(() => {
-  //   const unregisterAuthObserver = firebase
-  //     .auth()
-  //     .onAuthStateChanged(async user => {
-  //       if(!user) {
-  //         console.log('user logout')
-  //         return ;
-  //       }
-  //       console.log('login user info', user)
-  //       const _token = await user.getIdToken()
-  //       console.log(_token)
-  //     });
+  useEffect(() => {
+    const unregisterAuthObserver = firebaseInit
+      .auth()
+      .onAuthStateChanged(async user => {
+        if(!user) {
+          console.log('user logout')
+          return ;
+        }
+        console.log('login user info', user)
+        const _token = await user.getIdToken()
+        console.log(_token)
+      });
 
-  //     return () => unregisterAuthObserver();
-  // }, []);
+      return () => unregisterAuthObserver();
+  }, []);
 
   const HomePage = dynamic({
     app,
