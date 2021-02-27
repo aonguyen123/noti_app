@@ -1,7 +1,5 @@
-import { routerRedux } from "dva";
 import store from "store";
 import service from "services";
-import utils from "utils";
 
 const app = {
   namespace: "app",
@@ -38,7 +36,7 @@ const app = {
         //   )
         // );
       } else {
-        yield call(utils.setHeaderRequest, _token);
+        // yield call(utils.setHeaderRequest, _token);
         yield call(service.getMe);
       }
     },

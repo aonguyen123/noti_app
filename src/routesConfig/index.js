@@ -1,8 +1,8 @@
 import React, {useEffect} from "react";
-import {LoadingOutlined} from "@ant-design/icons";
 import {router, dynamic} from "dva";
 
 import { firebaseInit } from 'firebaseInit'
+import { Loader } from 'components'
 import "firebase/auth";
 
 const {BrowserRouter, Route, Switch, Redirect} = router;
@@ -40,12 +40,8 @@ function RouterConfig({history, app}) {
   });
 
   dynamic.setDefaultLoadingComponent(() => {
-    return <LoadingOutlined />;
+    return <Loader />;
   });
-  // const RegisterPage = dynamic({
-  //   app,
-  //   component: () => import('./../pages/')
-  // });
 
   return (
     <BrowserRouter>

@@ -1,13 +1,23 @@
 import axios from "axios";
 
-export function request(method, endPoint, data, params) {
-  return axios({
-    method,
-    url: `https://nest-app-api.herokuapp.com${endPoint}`,
-    data,
-    params,
-  });
-}
-export function setHeaderRequest(token) {
-  axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-}
+const request = axios.create({
+  baseURL: process.env.REACT_APP_API_URL,
+});
+request.interceptors.request.use(async (config) => {
+  //handle token here
+  return config;
+});
+request.interceptors.response.use(
+  (response) => {
+    if (response?.data) {
+      return response.data;
+    }
+    return response;
+  },
+  (error) => {
+    //handle error
+    throw error;
+  }
+);
+
+export default request;

@@ -3,11 +3,11 @@ import { message } from "antd";
 import createLoading from "dva-loading";
 import { createBrowserHistory } from "history";
 import "antd/dist/antd.css";
-// import "@alifd/next/dist/next.css";
 
 import appModel from "./models/app";
 import { requestFirebaseNotification, onMessageListener } from "./firebaseInit";
 import RouterConfig from "./routesConfig";
+import './App.css'
 
 requestFirebaseNotification()
   .then((firebaseToken) => {
