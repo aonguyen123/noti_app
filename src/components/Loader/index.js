@@ -6,7 +6,7 @@ import styles from './loader.module.css'
 export default function Loader() {
     return (
         <div className={styles['wrapper-loading']}>
-            <Spin tip='loading' />
+            <Spin tip='Loading' />
         </div>
     )
 }
