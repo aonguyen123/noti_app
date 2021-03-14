@@ -6,12 +6,20 @@ import {FAKE_LIST_NOTI} from "./fakeData";
 //   return response.data;
 // }
 
-const getAll = () => {
-  return new Promise((resolve) => {
+const getAllNotify = () => {
+  return new Promise((resolve, reject) => {
     setTimeout(() => {
       resolve(FAKE_LIST_NOTI);
-    }, 1000);
+    }, 5000);
   });
 };
 
-export {getAll};
+const addNotify = (data) => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(data)
+    }, 2000)
+  })
+}
+
+export {getAllNotify, addNotify};

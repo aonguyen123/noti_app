@@ -1,7 +1,6 @@
-import React, {useEffect} from "react";
+import React from "react";
 import {router, dynamic} from "dva";
 
-import { firebaseInit } from 'firebaseInit'
 import { Loader } from 'components'
 import "firebase/auth";
 
@@ -9,25 +8,10 @@ const {BrowserRouter, Route, Switch, Redirect} = router;
 
 function RouterConfig({history, app}) {
 
-  useEffect(() => {
-    const unregisterAuthObserver = firebaseInit
-      .auth()
-      .onAuthStateChanged(async user => {
-        if(!user) {
-          console.log('user logout')
-          return ;
-        }
-        console.log('login user info', user)
-        const _token = await user.getIdToken()
-        console.log(_token)
-      });
-
-      return () => unregisterAuthObserver();
-  }, []);
-
   const HomePage = dynamic({
     app,
     component: () => import("pages/home"),
+    models: () => [import('models/home')]
   });
   const NotFound = dynamic({
     app,

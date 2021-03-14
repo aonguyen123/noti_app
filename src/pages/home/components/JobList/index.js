@@ -9,7 +9,7 @@ import styles from "./../../home.module.css";
 
 const {Link} = router;
 
-export default function JobList({data}) {
+export default function JobList({notifies}) {
   function renderStatus(stt) {
     const res = jobStatus.find((i) => i.id === stt);
     if (res) {
@@ -27,7 +27,7 @@ export default function JobList({data}) {
       extra="hhooo"
       size="small"
       itemLayout="horizontal"
-      dataSource={data}
+      dataSource={notifies}
       renderItem={(item) => (
         <QueueAnim
           delay={300}
@@ -51,7 +51,7 @@ export default function JobList({data}) {
                 <Row gutter={[5, 5]}>
                   <Col span={24}>
                     <div className={styles["job-title"]}>
-                      <Link to="https://ant.design">{item.title}</Link>
+                      <Link to="https://ant.design">{item.name}</Link>
                       <p>
                         <DashboardOutlined style={{marginRight: "2px"}} />
                         {item.time}

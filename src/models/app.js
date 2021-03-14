@@ -1,21 +1,13 @@
 import store from "store";
 import service from "services";
+import {routerRedux} from "dva";
 
 const app = {
   namespace: "app",
   state: {
-    notifies: [],
-    locationPathname: "",
-    locationQuery: "",
   },
   reducers: {
-    save(state, { payload }) {
-      return {
-        ...state,
-        notifies: payload,
-      };
-    },
-    updateLocation(state, { payload }) {
+    updateLocation(state, {payload}) {
       return {
         ...state,
         ...payload,
@@ -23,30 +15,27 @@ const app = {
     },
   },
   effects: {
-    *getMe(_, { call, put, select }) {
-      const _token = store.get("_token");
-      const redirectUrl = [];
-      const { locationPathname, locationQuery } = yield select((_) => _.app);
-      if (locationPathname) redirectUrl.push(locationPathname);
-      if (locationQuery) redirectUrl.push(locationQuery);
-      if (!_token) {
-        // yield put(
-        //   routerRedux.push(
-        //     `/signup?redirectUrl=${encodeURIComponent(redirectUrl.join(""))}`
-        //   )
-        // );
-      } else {
-        // yield call(utils.setHeaderRequest, _token);
-        yield call(service.getMe);
-      }
-    },
-    *fetchNotify(_, { call, put }) {
-      const data = yield call(service.fetchNotify);
-      yield put({ type: "save", payload: data });
-    },
+    // *checkToken(_, {call, put, select}) {
+    //   console.log('sss')
+    //   const _token = store.get("TOKEN");
+    //   const redirectUrl = [];
+    //   const {locationPathname, locationQuery} = yield select((_) => _.app);
+    //   if (locationPathname) redirectUrl.push(locationPathname);
+    //   if (locationQuery) redirectUrl.push(locationQuery);
+    //   if (!_token) {
+    //     yield put(
+    //       routerRedux.push(
+    //         `/login?redirectUrl=${encodeURIComponent(redirectUrl.join(""))}`
+    //       )
+    //     );
+    //   } else {
+    //     yield put(routerRedux.push(`/home`));
+    //     yield put({type: "saveToken", payload: _token});
+    //   }
+    // },
   },
   subscriptions: {
-    setupHistory({ history, dispatch }) {
+    setupHistory({history, dispatch}) {
       return history.listen((location) => {
         dispatch({
           type: "updateLocation",
@@ -56,9 +45,6 @@ const app = {
           },
         });
       });
-    },
-    setup({ dispatch }) {
-      dispatch({ type: "getMe" });
     },
   },
 };

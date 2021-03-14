@@ -1,10 +1,10 @@
 import { signIn, getMe } from "./auth";
-import { getAll } from "./home";
+import { getAllNotify } from "./home";
 
 const service = {
   getMe,
   signIn,
-  getAll,
+  getAllNotify,
 };
 
 export default service;

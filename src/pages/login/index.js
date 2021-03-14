@@ -8,7 +8,7 @@ import "./firebaseui-styling.global.css";
 import styles from "./login.module.css";
 
 const uiConfig = {
-  signInFlow: "popup",
+  signInFlow: "redirect",
   signInSuccessUrl: "/home",
   signInOptions: [firebase.auth.PhoneAuthProvider.PROVIDER_ID],
 };
