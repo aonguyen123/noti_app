@@ -1,12 +1,12 @@
-import React, {useState, useEffect} from "react";
-import {Row, Col, Card, Button} from "antd";
-import {connect} from "dva";
+import React, { useState, useEffect } from "react";
+import { Row, Col, Card, Button } from "antd";
+import { connect } from "dva";
 
-import {Title} from "components";
-import {JobList, JobExtra, JobAdd} from "./components";
+import { Title } from "components";
+import { JobList, JobExtra, JobAdd } from "./components";
 import styles from "./home.module.css";
 
-function Home({notifies, loading}) {
+function Home({ notifies, loading }) {
   const [visible, setVisible] = useState(false);
 
   //   async function sendMessage(values) {
@@ -37,7 +37,7 @@ function Home({notifies, loading}) {
       <Row gutter={[16, 16]}>
         <Col span={24}>
           <Card
-            loading={loading.effects['home/fetchNotify']}
+            loading={loading.effects["home/fetchNotify"]}
             size="small"
             title={<Title title="Danh sách thông báo" />}
             extra={<JobExtra showModal={showModal} />}
@@ -53,7 +53,7 @@ function Home({notifies, loading}) {
   );
 }
 
-export default connect(({home, loading}) => ({
+export default connect(({ home, loading }) => ({
   notifies: home.notifies,
   loading,
 }))(Home);

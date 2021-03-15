@@ -5,69 +5,69 @@ import {
   TabletOutlined,
   AntDesignOutlined,
 } from "@ant-design/icons";
-export default {
+const defaultProps = {
   route: {
     path: "/",
     routes: [
       {
         path: "/welcome",
-        name: "欢迎",
+        name: "Hello",
         icon: <SmileOutlined />,
         component: "./Welcome",
       },
       {
         path: "/admin",
-        name: "管理页",
+        name: "admin",
         icon: <CrownOutlined />,
         access: "canAdmin",
         component: "./Admin",
         routes: [
           {
             path: "/admin/sub-page1",
-            name: "一级页面",
+            name: "admin 1",
             icon: <CrownOutlined />,
             component: "./Welcome",
           },
           {
             path: "/admin/sub-page2",
-            name: "二级页面",
+            name: "admin2",
             icon: <CrownOutlined />,
             component: "./Welcome",
           },
           {
             path: "/admin/sub-page3",
-            name: "三级页面",
+            name: "admin 3",
             icon: <CrownOutlined />,
             component: "./Welcome",
           },
         ],
       },
       {
-        name: "列表页",
+        name: "List",
         icon: <TabletOutlined />,
         path: "/list",
         component: "./ListTableList",
         routes: [
           {
             path: "/list/sub-page",
-            name: "一级列表页面",
+            name: "List1",
             icon: <CrownOutlined />,
             routes: [
               {
                 path: "sub-sub-page1",
-                name: "一一级列表页面",
+                name: "list 1.1",
                 icon: <CrownOutlined />,
                 component: "./Welcome",
               },
               {
                 path: "sub-sub-page2",
-                name: "一二级列表页面",
+                name: "list 1.2",
                 icon: <CrownOutlined />,
                 component: "./Welcome",
               },
               {
                 path: "sub-sub-page3",
-                name: "一三级列表页面",
+                name: "list 1.3",
                 icon: <CrownOutlined />,
                 component: "./Welcome",
               },
@@ -75,13 +75,13 @@ export default {
           },
           {
             path: "/list/sub-page2",
-            name: "二级列表页面",
+            name: "list 2",
             icon: <CrownOutlined />,
             component: "./Welcome",
           },
           {
             path: "/list/sub-page3",
-            name: "三级列表页面",
+            name: "list 3",
             icon: <CrownOutlined />,
             component: "./Welcome",
           },
@@ -89,7 +89,7 @@ export default {
       },
       {
         path: "https://ant.design",
-        name: "Ant Design 官网外链",
+        name: "Ant Design",
         icon: <AntDesignOutlined />,
       },
     ],
@@ -98,3 +98,5 @@ export default {
     pathname: "/",
   },
 };
+
+export default defaultProps;
