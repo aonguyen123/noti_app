@@ -1,14 +1,15 @@
 import React from "react";
-import {Row, Col} from "antd";
-import {router, dynamic, connect} from "dva";
+import { Row, Col } from "antd";
+import { router, dynamic, connect } from "dva";
 
-import { Footer } from 'components'
-import {firebaseInit} from "firebaseInit";
+import { Footer } from "components";
+import { firebaseInit } from "firebaseInit";
 import styles from "./home.module.css";
 
-const {useRouteMatch, Switch, Route} = router;
+const { useRouteMatch, Switch, Route } = router;
 
-function Main({notifies, loading, dispatch}) {
+function Main({ dispatch, app }) {
+  console.log(app);
   const Home = dynamic({
     component: () => import("./Home"),
   });
@@ -16,20 +17,19 @@ function Main({notifies, loading, dispatch}) {
     component: () => import("pages/notFound"),
   });
 
-  const {url} = useRouteMatch();
+  const { url } = useRouteMatch();
 
   React.useEffect(() => {
     const unregisterAuthObserver = firebaseInit
       .auth()
       .onAuthStateChanged(async (user) => {
         if (!user) {
-          dispatch({type: 'home/logout'})
+          window.location.href = "/login";
         }
       });
     return () => unregisterAuthObserver();
   }, [dispatch]);
 
-  
   return (
     <Row>
       <Col span={24}>
@@ -45,6 +45,7 @@ function Main({notifies, loading, dispatch}) {
   );
 }
 
-export default connect(({loading}) => ({
+export default connect(({ app, loading }) => ({
   loading,
+  app: app,
 }))(Main);
